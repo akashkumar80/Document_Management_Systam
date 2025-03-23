@@ -3,10 +3,11 @@ import bcrypt from "bcryptjs"
 import jwt from 'jsonwebtoken'
 import User from "../models/User"
 import { JWT_SECRET } from "../constants";
+import { authenticateUser, authorizeRole } from "../middleware/authMiddleware";
 
 const router= Router();
 
-router.post("/register",async(req,res)=>{
+router.post("/register",authenticateUser,authorizeRole(["admin"]),async(req,res)=>{
     try{
         const {username,email,password}=req.body
         const hashedPassword=await bcrypt.hash(password,10); 

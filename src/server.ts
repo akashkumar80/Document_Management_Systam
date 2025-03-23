@@ -5,6 +5,7 @@ import { MONGO_URL, PORT } from "./constants";
 import authRoutes from "./routes/auth"
 import documentRoutes from "./routes/documents"
 import mongoose from "mongoose"
+import path from "path";
 
 dotenv.config()
 
